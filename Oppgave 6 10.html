@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 6.10</title>
+    <script>
+        window.onload = oppstart;
+
+        var arr = ["Hans","Ole","Nils","Olav","Per","Knut","Kari","Line","Pia"];
+        var ting = [];
+
+        function oppstart() {
+            for(var i = 0; i < 3; i++){
+                ting.push(arr[Math.floor(Math.random()*(arr.length))]);
+            }
+            document.write(ting);
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>

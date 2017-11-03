@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 6.3</title>
+    <script>
+        window.onload = oppstart;
+
+        var tall = [34,53,2,3,34,26,26,85,3,4,98,2,12];
+
+        function oppstart() {
+            document.getElementById("knapp").onclick = skrivUt;
+        }
+
+        function skrivUt() {
+            document.getElementById("a").innerHTML = "Tallene i riktig rekkefølge: <br>";
+            for(var i = 0; i < tall.length; i++) {
+                document.getElementById("a").innerHTML += "  " + tall[i];
+            }
+
+            document.getElementById("b").innerHTML = "Tallene i baklengs rekkefølge: <br>";
+            for(var i = tall.length; i > 0; i--) {
+                document.getElementById("b").innerHTML += "  " +  tall[i-1];
+            }
+
+            document.getElementById("c").innerHTML = "Annenhvert tall i rekken: <br>";
+            for(var i = 0; i < tall.length; i++, i++) {
+                document.getElementById("c").innerHTML += "  " + tall[i];
+            }
+
+            document.getElementById("d").innerHTML = "Tallene som er mindre enn 10 i rekken: <br>";
+            for (var i = 0; i < tall.length; i++){
+                if(tall[i] < 10) {
+                    document.getElementById("d").innerHTML += "  " + tall[i];
+                }
+            }
+
+            document.getElementById("e").innerHTML = "Alle partallene i rekken: <br>";
+            for (var i = 0; i < tall.length; i++) {
+                if(tall[i] % 2 === 0){
+                    document.getElementById("e").innerHTML += "  " + tall[i];
+                }
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+<button id="knapp">Trykk her</button><br><br>
+<p id = "a"></p><br><br>
+<p id = "b"></p><br><br>
+<p id = "c"></p><br><br>
+<p id = "d"></p><br><br>
+<p id = "e"></p>
+</body>
+</html>

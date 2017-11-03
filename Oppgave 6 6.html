@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 6.6</title>
+    <script>
+        window.onload = oppstart;
+
+        var bokstaver = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+        function oppstart() {
+            document.write("1: ");
+            for (var i = 0; i < bokstaver.length; i++){
+                for (var e = 0; e <= i; e++){
+                    document.write(bokstaver[i]);
+                    if(e===i && i != 24){
+                        var skrivut = i + 2;
+                        document.write("<br>" + skrivut + ": ");
+                    }
+                }
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>

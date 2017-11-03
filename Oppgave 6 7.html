@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 6.7</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            var tall = [1, 1, 3, 5, 8, 9, 12, 45, 1, 58, 8];
+            var sjekk = [];
+
+            for(var i = 0; i < tall.length; i++){
+                for (var e = i+1; e < tall.length; e++){
+                    for (var o = 0; o < sjekk.length; o++) {
+                        if (tall[i] === sjekk[o]) {
+                            e = tall.length;
+                            break;
+
+                        }
+                        if (tall[i] === tall[e]) {
+                            document.write(String(tall[i]) + ": " + i + ", " + e + "<br>");
+                            sjekk.push(tall[i]);
+                        }
+                    }
+                }
+            }
+
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 6.4</title>
+    <script>
+        window.onload = oppstart;
+
+        var tall = [34,53,2,3,34,26,26,85,3,4,98,2,12];
+        var antall = 0;
+
+        function oppstart() {
+            document.getElementById("knapp").onclick = skrivUt;
+        }
+
+        function skrivUt() {
+            document.getElementById("a").innerHTML = "Summen av alle tallene i rekken: <br>"
+            for(var i = 0; i < tall.length; i++){
+                antall += tall[i];
+
+                if(i===tall.length-1) {
+                    document.getElementById("a").innerHTML = antall;
+                }
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+<button id="knapp">Trykk her</button><br><br>
+<p id = "a"></p><br><br>
+<p id = "b"></p><br><br>
+<p id = "c"></p><br><br>
+<p id = "d"></p><br><br>
+<p id = "e"></p>
+</body>
+</html>
