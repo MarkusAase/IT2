@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 4.11</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            // Hovedprogramkode her...
+            document.getElementById("btnKnapp").onclick = regnUt;
+
+
+        }
+        function regnUt() {
+            var sekunder = parseFloat(document.getElementById("tall1").value);
+
+            var timerRest = sekunder % 3600;
+            var timer = (sekunder - timerRest)/3600;
+            var minutterRest = timerRest % 60;
+            var minutter = (timerRest - minutterRest)/60;
+
+
+            document.getElementById("svar").innerHTML = timer + " timer, " + minutter + " minutter, " + minutterRest + " sekunder"
+
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+Tid i sekunder: <input type="number" id="tall1"> <br> <br>
+
+<button type="button" id="btnKnapp">Trykk her</button>
+<br>
+<p id="svar"></p>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 4.9</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            // Hovedprogramkode her...
+            document.getElementById("knapp").onclick = matte;
+        }
+
+        function matte() {
+            var verdi = parseFloat(document.getElementById("tekstboks").value);
+
+            if(verdi > 0) {
+                document.getElementById("svar").innerHTML = "Tallet ditt er positivt";
+            } else if (verdi < 0) {
+                document.getElementById("svar").innerHTML = "Tallet ditt er negativt";
+            } else {
+                document.getElementById("svar").innerHTML = "Tallet ditt er null";
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+Skriv et tall: <input type="text" id ="tekstboks">
+<button type="button" id="knapp">Trykk her</button>
+<p id="svar"></p>
+</body>
+</html>
