@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 9</title>
+    <script>
+        window.onload = oppstart;
+
+        var xPos = [];
+        var yPos = [];
+
+
+        function oppstart() {
+            document.getElementById("tegneFlate").onmousedown = function(){koordinater()};
+
+            var ctx = document.getElementById("tegneFlate").getContext("2d");
+
+            ctx.canvas.width  = window.innerWidth;
+            ctx.canvas.height = window.innerHeight;
+
+            document.addEventListener('keydown', function(event) {
+                if(event.keyCode == 13) {
+                    draw();
+                }
+
+            });
+        }
+
+        function koordinater() {
+            xPos.push(event.clientX);
+            yPos.push(event.clientY);
+        }
+
+
+        function draw() {
+            var ctx = document.getElementById("tegneFlate").getContext("2d");
+
+            for (var i = 0; i < xPos.length; i++){
+                tall1 = xPos[i] + 0.5;
+                tall2 = yPos[i] + 0.5;
+
+                x = xPos[i] - 0.5;
+                y = yPos[i] - 0.5;
+
+                ctx.beginPath();
+
+                ctx.moveTo(x, y);
+                ctx.lineTo(tall1, y);
+                ctx.lineTo(tall1, tall2);
+                ctx.lineTo(x, tall2);
+                ctx.lineTo(x, y);
+
+                ctx.strokeStyle = "red";
+                ctx.lineWidth = "5";
+
+                ctx.stroke();
+            }
+        }
+
+    </script>
+    <style>
+        canvas{
+           border: solid 1px black;
+            position:absolute;
+        }
+
+        html, body {
+            width:  100%;
+            height: 100%;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<canvas id="tegneFlate"></canvas>
+</body>
+</html>

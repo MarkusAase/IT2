@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 10</title>
+    <script>
+        window.onload = oppstart;
+        var forover = [
+            "roma.jpg",
+            "peterskirken-stor.jpg",
+            "colosseum.jpeg"
+        ];
+
+        var bakover = [
+            "colosseum.jpeg",
+            "peterskirken-stor.jpg",
+            "roma.jpg"
+        ];
+
+        var now = new Date();
+
+
+        function oppstart() {
+            setInterval(byttBilde, 2000); //Funksjon, antall millisekunder venting
+        }
+
+        var teller = 0;
+        function byttBilde() {
+            //Bytter ut bakgrunnsbildet
+            if(teller === bilder.length){
+                teller = 0;
+            }
+            document.body.style.backgroundImage = "url(" + forover[teller] + ")";
+            teller++;
+
+        }
+
+    </script>
+    <style>
+        body {
+            background-size: cover;
+            transition: 1s;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>
