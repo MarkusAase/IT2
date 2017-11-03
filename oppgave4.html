@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 4</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            //Når man trykker på knappen, kjør funskjonen mobil
+            document.getElementById("btnKjop").onclick = mobil;
+        }
+
+        function mobil() {
+            //Tar inn verdiene til merke og fargen og setter det inn i en variabel
+            var merke = radioFormMerke.elements.namedItem("radKnappMerke").value;
+            var farge = radioFormFarge.elements.namedItem("radKnappFarge").value;
+
+            //Tar inn verdien til skjermstørrelsen, gjør det om til tall og setter det inn i en variabel
+            var skjerm = parseFloat(document.getElementById("txtTommer").value);
+
+            //Setter prisen på skjermen lik størrelsen på skjermen ganger 1000
+            var pris = skjerm*1000;
+
+            //Sjekker om merket var apple
+            if (merke==="apple"){
+                //Hvis merket er apple, gi pris variebelen den nye verdien av den gamle pris verdien + 30% av den gamle pris verdien.
+                pris = pris + (pris/100)*30;
+
+                //Sjekk om fargen i tillegg er svart
+                if (farge==="svart") {
+                    //Hvis fargen i tillegg er svart, fjern 5% fra pris
+                    pris = pris - (pris/100)*5;
+
+                    //Skriv ut pris variabelen
+                    document.getElementById("txtPris").innerHTML = "Prisen på telefonen din er " + pris + " kr.";
+                } else {
+                    //Hvis fargen ikke er svart, skriv ut pris variabelen uten å endre noe
+                    document.getElementById("txtPris").innerHTML = "Prisen på telefonen din er " + pris  + " kr.";
+                }
+
+                //Hvis merket ikke er apple, sjekk om fargen er svart
+            } else if (farge === "svart") {
+                //Hvis fargen er svart fjern 5% fra prisen
+                pris = pris - (pris/100)*5;
+
+                //Skriv ut den nye prisen
+                document.getElementById("txtPris").innerHTML = "Prisen på telefonen din er " + pris  + " kr.";
+            } else {
+                //Hvis fargen ikke er svart og merket ikke er apple, skriv ut prisen uten å endre noe
+                document.getElementById("txtPris").innerHTML = "Prisen på telefonen din er " + pris + " kr.";
+            }
+            //Skriv ut en tekst med verdiene til merket, fargen og skjermstørrelsen som man tar fra variablene som ble laget tidligere
+            document.getElementById("txtInfo").innerHTML = "Modellen du valgte er: " + merke + ", fargen du valgte er: " + farge + ", og skjermstørrelsen du valgte er: " + skjerm + " tommer.";
+
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+Skjermstørrelse i tommer: <input type="number" id="txtTommer" min="2" max="11"><br><br>
+
+<br><br><br>
+<form name="radioFormMerke">
+    Merke på mobilen:
+    <br>
+    <input type="radio" name="radKnappMerke" value="apple">Apple<br>
+    <input type="radio" name="radKnappMerke" value="huawei">Huawei<br>
+    <input type="radio" name="radKnappMerke" value="sony">Sony <br>
+</form>
+<br><br><br>
+<form name="radioFormFarge">
+    Farge på mobilen:
+    <br>
+    <input type="radio" name="radKnappFarge" value="svart">Svart <br>
+    <input type="radio" name="radKnappFarge" value="hvit">Hvit <br>
+</form>
+<br><br>
+<button type="button" id="btnKjop">Kjøp</button><br><br>
+<p id="txtPris"></p>
+<p id="txtInfo"></p>
+</body>
+</html>
