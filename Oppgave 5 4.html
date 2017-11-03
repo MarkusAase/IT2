@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 5.4</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            document.getElementById("knapp").onclick = program;
+        }
+
+        function program() {
+            var antall = parseInt(document.getElementById("nummer").value);
+            var tekst = document.getElementById("tekst").value;
+
+            for (var i = 0; i <= antall; i++){
+                document.getElementById("svar").innerHTML +="  " + tekst;
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+Skriv hva som helst: <input type="text" id="tekst"> <br><br>
+Skriv hvor mange ganger det skal sktives ut: <input type="number" id="nummer"> <br><br>
+
+<button type="button" id="knapp">Trykk her</button>
+<p id="svar"></p>
+</body>
+</html>

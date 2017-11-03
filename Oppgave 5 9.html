@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 6.9</title>
+    <script>
+        window.onload = oppstart;
+
+        var tall = [1, 2, 3, 4, 5, 6, 7, 9];
+        var finnes = false;
+
+        function oppstart() {
+            // Hovedprogramkode her...
+
+            document.getElementById("knapp").onclick = tingtang;
+        }
+
+        function tingtang() {
+            var nummer = parseInt(document.getElementById("txtVerdi").value);
+            for(var i = 0; i <= tall.length; i++){
+                if(tall[i] === nummer){
+                    finnes = true;
+                }
+            }
+            if(finnes === true){
+                document.getElementById("tekst").innerHTML = "Tallet ditt finnes i rekken";
+            } else {
+                document.getElementById("tekst").innerHTML = "Tallet ditt finnes ikke i rekken";
+
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<input type="number" id="txtVerdi" min="0" max="10">
+
+<button type="button" id="knapp">Trykk her</button>
+
+<p id="tekst"></p>
+
+</body>
+</html>

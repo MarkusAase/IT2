@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 5.3</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            for (var i = 0; i < 100; i++) {
+                if(i%2===0){
+                    document.write("  " + i + "  ");
+                }
+            }
+
+            document.write("<br><br>");
+
+            for (var i = 0; i < 100; i++) {
+                if(i%2!=0){
+                    document.write("  " + i + "  ");
+                }
+            }
+
+            document.write("<br><br>");
+
+            for (var i = 0; i < 100; i++) {
+                if(i%5===0){
+                    document.write("  " + i + "  ");
+                }
+            }
+
+            document.write("<br><br>");
+
+            for (var i = 0; i < 100; i++) {
+                if(i%5===0 && i%2===0){
+                    document.write("  " + i + "  ");
+                }
+            }
+
+            document.write("<br><br>");
+
+            for (var i = 0; i < 100; i++) {
+                if(i%8===0 || i%3===0){
+                    document.write("  " + i + "  ");
+                }
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>
