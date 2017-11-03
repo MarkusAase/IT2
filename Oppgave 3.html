@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 3</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            //Lager et tomt array og en teller
+            var array = [];
+            var teller = 1;
+
+            //Lager 10 rader nedover, legger til en ny array inne i hver av dem og fyller dem
+            for(var o = 0; o < 10; o++){
+                array.push([]);
+                //Fyller arrayene med tallene fra 1 til hundre, går til en ny rad etter hver tiende
+                for(var m = 0; m < 10; m++){
+                    //Sjekker om tallet som fylles inn er 42, hvis det er det skriv det ut.
+                    if(teller===42){
+                        document.write(teller);
+                    }
+                    array[o].push(teller);
+                    //Legger til 1 på teller for å holde styr på hvilken nummer man er på
+                    teller++;
+                }
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>

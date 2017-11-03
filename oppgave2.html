@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 2</title>
+    <script>
+        window.onload = oppstart;
+
+        var byer = [];
+        var lik = false;
+
+        function oppstart() {
+            //Kjører funksjoner når knappene blir trykket på
+            document.getElementById("lagre").onclick = lagre;
+            document.getElementById("sorter").onclick = sorter;
+            document.getElementById("skrivUt").onclick = skrivUt;
+        }
+
+        function lagre() {
+            //Henter ut teksten som er skrevet inn i input-feltet
+            var lagre = document.getElementById("input").value;
+
+            //Går gjennom hele arrayet og sjekker om verdien som skal legges inn finnes allerede, hvis den gjør det sett lik til true
+            for (var i = 0; i<=byer.length; i++){
+                if(lagre===byer[i]){
+                    lik = true;
+                }
+            }
+
+            //Sjekk om lik er true
+            if(lik===true){
+                //Hvis den er det så er byen allerede skrevet inn, og den vil ikke bli lagret
+                document.getElementById("tekst").innerHTML = "Du har allerede skrevet denne byen!";
+
+                //Sett lik tilbake til false så brukeren kan prøve på nytt
+                lik=false;
+            } else if(lik===false){
+                //Hvis byen ikke allerede er skrevet, legg den inn i arrayet
+                byer.push(lagre);
+                document.getElementById("tekst").innerHTML = "Lagret!"
+            }
+
+        }
+
+        function sorter() {
+            //Sorterer byene alfabetisk
+            byer.sort();
+        }
+
+        function skrivUt(){
+            //Henter ut bodyen og setter den i en variabel
+            var body = document.getElementById("body");
+
+            //Henter ut tabellen og tabellbodyen og setter det i variabler
+            var tabell = document.createElement("table");
+            var tabellBody = document.createElement("tbody");
+
+            //Går gjennom byer arrayet og lager en rad nedover for hver av dem
+            for(var i = 0; i < byer.length; i++){
+                var row = document.createElement("tr");
+
+                //Lager to kolonner
+                for (var j = 0; j < 2; j++) {
+
+                    //Skriver inn indeksen til arrayet hvis det er den første kolonnen
+                    if(j===0){
+                        var cell = document.createElement("td");
+                        var cellText = document.createTextNode(i);
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+                    }
+                    //Skriver inn byen for indeksen hvis det er den andre kolonnen
+                    else {
+                        var cell = document.createElement("td");
+                        var cellText = document.createTextNode(byer[i]);
+                        cell.appendChild(cellText);
+                        row.appendChild(cell);
+                    }
+
+                }
+
+                tabellBody.appendChild(row);
+            }
+            //Fullfører koden som har blitt gjort
+            tabell.appendChild(tabellBody);
+
+            body.appendChild(tabell);
+
+
+            //Legger til en border på tabellen
+            tabell.setAttribute("border", "2");
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body id="body">
+Skriv inn bynavn: <input type="text" id="input">
+<button type="button" id="lagre">Lagre</button>
+<button type="button" id="sorter">Sorter</button>
+<button type="button" id="skrivUt">Skriv ut</button>
+<br>
+<p id="tekst"></p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 1</title>
+    <script>
+        window.onload = oppstart;
+
+        var array = [];
+
+        function oppstart() {
+            //Lager 10 tilfeldige tall og setter dem inn i arrayet
+            for(var i = 0; i < 10; i++){
+                array.push(Math.floor(Math.random()*10));
+            }
+
+            //Kjører sorter funksjonen
+            sorter();
+        }
+
+        function sorter() {
+            //Sorterer arrayet fra lavest til høyest
+            array.sort();
+
+            //Reverserer arrayet så det høyeste kommer først
+            array.reverse();
+
+            //Skriver ut arrayet i konsollen
+            console.log(array);
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>
