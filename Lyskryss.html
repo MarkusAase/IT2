@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lyskryss test</title>
+    <script>
+        window.onload = oppstart;
+
+        var trykket = false;
+
+        function oppstart() {
+            document.getElementById("knapp").onclick = start;
+
+        }
+        
+        function start() {
+            setTimeout(gul, 3000);
+        }
+
+        function gul() {
+
+            if(trykket===false) {
+                document.getElementById("vanlig").src = "Gul.png";
+                setTimeout(rod, 3000);
+                trykket = true;
+            }
+
+        }
+
+        function rod() {
+            document.getElementById("vanlig").src = "Rød.png";
+            document.getElementById("mann").src = "Grønn-mann.png";
+            setTimeout(rodgul, 5000);
+        }
+
+        function rodgul() {
+            document.getElementById("vanlig").src = "Rød-gul.png";
+            document.getElementById("mann").src = "Rød-mann.png";
+            setTimeout(ferdig, 3000);
+        }
+
+        function ferdig() {
+            document.getElementById("vanlig").src = "Grønn.png";
+            trykket=false;
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+<button type="button" id="knapp">Trykk her</button>
+<img id="vanlig" src="Grønn.png">
+<img id="mann" src="Rød-mann.png">
+</body>
+</html>
