@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Sebastian Bjørvik">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trafikklys</title>
+    <script>
+        window.onload = oppstart;
+        var buffer = 0;
+        var sjekk = true;
+        var lyd = false;
+        var lydrask = false;
+        var ac = new AudioContext();
+        function oppstart() {
+            // Hovedprogramkode her...
+            if (sjekk === true) {
+                document.getElementById("knapp").onmousedown = trykket;
+                document.getElementById("knapp").onmouseup = av;
+            }
+            window.setInterval(function(){
+                if(lyd === true) {
+                    spillAvLyd();
+                }
+            }, 400);
+            window.setInterval(function(){
+                if(lydrask === true) {
+                    spillAvLyd();
+                }
+            }, 200);
+        }
+
+        function trykket() {
+            sjekk = false;
+            document.getElementById("knapp").style.width = "90px";
+            document.getElementById("knapp").style.height = "90px";
+            document.getElementById("knapp").style.marginBottom = "35px";
+            document.getElementById("knapp").style.marginRight = "35px";
+
+            setTimeout(gul, 5000);
+        }
+        function av() {
+            document.getElementById("knapp").style.width = "100px";
+            document.getElementById("knapp").style.height = "100px";
+            document.getElementById("knapp").style.marginBottom = "30px";
+            document.getElementById("knapp").style.marginRight = "30px";
+        }
+        function gul() {
+            buffer++;
+            document.getElementById("trafikklys").src = "gul.png";
+            setTimeout(rod, 5000);
+        }
+        function rod() {
+            document.getElementById("trafikklys").src = "rod.png";
+            setTimeout(gronnMann, 3000);
+        }
+        function gronnMann() {
+            lyd = true;
+            document.getElementById("mannlys").src = "gronnMann.png";
+            setTimeout(blinkMannGraa, 10000);
+        }
+        function blinkMannGronn() {
+            buffer++;
+            document.getElementById("mannlys").src = "gronnMann.png";
+            if(buffer>5) {
+                rodMann();
+            }
+            else {
+                setTimeout(blinkMannGraa, 1000);
+            }
+        }
+        function blinkMannGraa() {
+            lyd = false;
+            lydrask = true;
+            document.getElementById("mannlys").src = "ingenMann.png";
+            setTimeout(blinkMannGronn, 1000);
+        }
+        function rodMann() {
+            lydrask = false;
+            document.getElementById("mannlys").src = "rodMann.png";
+            setTimeout(gulRod, 1000)
+        }
+        function gulRod() {
+            document.getElementById("trafikklys").src = "rodGul.png";
+            setTimeout(gronn, 3000)
+        }
+        function gronn() {
+            document.getElementById("trafikklys").src = "gronn.png";
+            sjekk = true;
+        }
+        function spillAvLyd() {
+            var osc = ac.createOscillator();
+            osc.connect(ac.destination);
+            osc.frequency.value = 600;
+            osc.start(ac.currentTime);
+            osc.stop(ac.currentTime + 0.1);
+        }
+
+
+    </script>
+    <style>
+        #knapp {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            margin: 30px;
+        }
+        #knapp:hover {
+            background-color: #b30000;
+        }
+        .lys {
+            height: 500px;
+        }
+        .beholder {
+            width: 500px;
+            margin: auto;
+            margin-top: 100px;
+            padding-left: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="knapp"></div>
+<div class="beholder">
+    <img src="gronn.png" id="trafikklys" class="lys">
+    <img src="rodmann.png" id="mannlys" class="lys">
+</div>
+</html>
