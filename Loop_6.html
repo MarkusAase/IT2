@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Loop Oppgave 6</title>
+    <script>
+        window.onload = oppstart;
+
+        var tall = [2,4,8,16,32,64,128];
+        var i = tall.length-1;
+
+        function oppstart() {
+
+            while(tall[i]>2){
+                document.write(" " + tall[i]);
+                i--;
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>

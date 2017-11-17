@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Loop Oppgave 4</title>
+    <script>
+        window.onload = oppstart;
+
+        var tall=[];
+
+        var nummer = 1;
+
+        function oppstart() {
+            // Hovedprogramkode her...
+            while(nummer<=128){
+                nummer=nummer*2;
+                tall.push(nummer);
+                if(nummer===128){
+                    document.write(tall);
+                }
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>
