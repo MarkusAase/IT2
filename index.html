@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Sebastian Bjørvik">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Logg inn</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            // Hovedprogramkode her...
+            document.getElementById("btn").onclick = sjekkPswrd;
+
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            document.getElementById("beholder").style.marginTop = (h-10 - 166) / 2 + "px";
+            document.body.style.height = (h - 10) + "px";
+        }
+        function sjekkPswrd() {
+            var usr = document.getElementById("usr").value;
+            var pswrd = document.getElementById("pswrd").value;
+            document.getElementById("usr").value = "";
+            document.getElementById("pswrd").value = "";
+            if (usr === "petrolicious" && pswrd === "drowssap") {
+                window.location = "oljeprosjekt.html";
+            }
+            else {
+                alert("Feil brukernavn eller passord");
+            }
+        }
+
+    </script>
+    <style>
+        .beholder {
+            border: solid 3px deepskyblue;
+            width: 25%;
+            height: 110px;
+            margin: auto;
+            text-align: center;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        #btn {
+            width: 25%;
+            height: 30px;
+            background-color: deepskyblue;
+            border: solid 3px deepskyblue;
+            color: white;
+            font-weight: bold;
+        }
+        #btn:hover {
+            background-color: white;
+            color: deepskyblue;
+        }
+        input {
+            height: 20px;
+            width: 50%;
+            border: solid 1px deepskyblue;
+            text-align: center;
+            font-family: "Trebuchet MS";
+            color: deepskyblue;
+            font-weight: bold;
+        }
+        body {
+            border: solid 5px deepskyblue;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="beholder" class="beholder">
+    <input id="usr" type="text" autocomplete="false"> <br><br>
+    <input id="pswrd" type="password" autocomplete="false"> <br><br>
+    <button id="btn">Logg inn</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Sebastian Bjørvik">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oljeprosjekt</title>
+    <script>
+        window.onload = oppstart;
+        var olje = [];
+        var selskap = ["ledig","ledig","ledig", "Shell", "Statoil", "BP", "PGS", "Agip"];
+        var shell = [];
+        var statoil = [];
+        var bp = [];
+        var pgs = [];
+        var agip = [];
+
+        function oppstart() {
+            // Hovedprogramkode her...
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            document.getElementById("beholder").style.marginTop = (h-10 - 531) / 2 + "px";
+            document.body.style.height = (h - 10) + "px";
+
+
+            var table = document.createElement("table");
+            for (i = 0; i <= 9; i++) {
+                olje[i] = [];
+                var tr = document.createElement("tr");
+                for (j = 0; j <= 14; j++) {
+                    olje[i][j] = [];
+                    olje[i][j][0] =  selskap[Math.floor(Math.random()*selskap.length)];
+                    if (olje[i][j][0] === "ledig") {
+                        olje[i][j][1] = 0;
+                    }
+                    else {
+                        olje[i][j][1] =  Math.floor(Math.random()*100);
+                    }
+
+                    var td = document.createElement("td");
+                    td.id = i + "-" + j;
+                    td.innerHTML = olje[i][j][0];
+
+                    if (olje[i][j][0] === "ledig" && td.style.background != "repeating-linear-gradient(-45deg, #fff, #fff " + 52*Math.sqrt(2)/7 + "px, deeppink " + 52*Math.sqrt(2)/7 + "px, deeppink " + 2*52*Math.sqrt(2)/7 + "px)") {
+                        td.className = "hover";
+                        td.onclick = function () {
+                                var sjekk = confirm("vil du kjøpe denne cellen?");
+
+                                if(sjekk === true) {
+                                this.style.background = "repeating-linear-gradient(-45deg, #fff, #fff " + 52*Math.sqrt(2)/7 + "px, deeppink " + 52*Math.sqrt(2)/7 + "px, deeppink " + 2*52*Math.sqrt(2)/7 + "px)";
+
+                                }
+                        };
+
+                        td.innerHTML = "";
+                    }
+                    if (olje[i][j][0] === "Shell") {
+                        td.style.backgroundColor = "yellow";
+                        shell.push((i+1) + "-" + (j+1));
+                    }
+                    if (olje[i][j][0] === "Statoil") {
+                        td.style.backgroundColor = "deeppink";
+                        statoil.push((i+1) + "-" + (j+1));
+                    }
+                    if (olje[i][j][0] === "BP") {
+                        td.style.backgroundColor = "lawngreen";
+                        bp.push((i+1) + "-" + (j+1));
+                    }
+                    if (olje[i][j][0] === "PGS") {
+                        td.style.backgroundColor = "deepskyblue";
+                        pgs.push((i+1) + "-" + (j+1));
+                    }
+                    if (olje[i][j][0] === "Agip") {
+                        td.style.backgroundColor = "#bbb";
+                        agip.push((i+1) + "-" + (j+1));
+                    }
+
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            document.getElementById("beholder").appendChild(table);
+            knapper();
+        }
+        function knapper() {
+            document.getElementById("btnVisListe").onclick = visListe;
+            document.getElementById("btnSkjulListe").onclick = skjulListe;
+        }
+        function visListe() {
+            var div = document.createElement("div");
+            div.className = "listediv";
+            div.id = "listediv";
+
+            document.getElementById("btnVisListe").style.display = "none";
+            document.getElementById("btnSkjulListe").style.display = "block";
+
+            var ul = document.createElement("ul");
+            var li = document.createElement("li");
+            li.innerHTML = "Shell";
+            li.style.fontWeight = "bold";
+            ul.appendChild(li);
+            for (i = 0; i < (shell.length); i++) {
+                var li = document.createElement("li");
+                li.innerHTML = shell[i];
+                ul.appendChild(li);
+            }
+            div.appendChild(ul);
+
+            var ul = document.createElement("ul");
+            var li = document.createElement("li");
+            li.innerHTML = "Statoil";
+            li.style.fontWeight = "bold";
+            ul.appendChild(li);
+            for (i = 0; i < (statoil.length); i++) {
+                var li = document.createElement("li");
+                li.innerHTML = statoil[i];
+                ul.appendChild(li);
+            }
+            div.appendChild(ul);
+
+            var ul = document.createElement("ul");
+            var li = document.createElement("li");
+            li.innerHTML = "BP";
+            li.style.fontWeight = "bold";
+            ul.appendChild(li);
+            for (i = 0; i < (bp.length); i++) {
+                var li = document.createElement("li");
+                li.innerHTML = bp[i];
+                ul.appendChild(li);
+            }
+            div.appendChild(ul);
+
+            var ul = document.createElement("ul");
+            var li = document.createElement("li");
+            li.innerHTML = "PGS";
+            li.style.fontWeight = "bold";
+            ul.appendChild(li);
+            for (i = 0; i < (pgs.length); i++) {
+                var li = document.createElement("li");
+                li.innerHTML = pgs[i];
+                ul.appendChild(li);
+            }
+            div.appendChild(ul);
+
+            var ul = document.createElement("ul");
+            var li = document.createElement("li");
+            li.innerHTML = "Agip";
+            li.style.fontWeight = "bold";
+            ul.appendChild(li);
+            for (i = 0; i < (agip.length); i++) {
+                var li = document.createElement("li");
+                li.innerHTML = agip[i];
+                ul.appendChild(li);
+            }
+            div.appendChild(ul);
+            document.getElementById("beholder").appendChild(div);
+            knapper();
+        }
+        function skjulListe() {
+            document.getElementById("btnVisListe").style.display = "block";
+            document.getElementById("btnSkjulListe").style.display = "none";
+            document.getElementById("listediv").outerHTML = "";
+            knapper();
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Trebuchet MS";
+            margin: 0;
+            border: solid 5px deepskyblue;
+        }
+        td {
+            border: solid 1px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+
+        }
+        table {
+            border-collapse: collapse;
+        }
+        #0-0 {
+            background-color: red;
+        }
+        .hover:hover {
+            background-color: #ddd;
+        }
+        .beholder {
+            padding-left: 20px;
+            padding-right: 20px;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+        }
+        .listediv {
+            flex: 1;
+            display: flex;
+        }
+        button {
+            height: 531px;
+            background-color: deepskyblue;
+            border: solid 3px deepskyblue;
+            color: white;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: white;
+            color: deepskyblue;
+        }
+        ul {
+            display: inline;
+        }
+        #btnSkjulListe {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<div id="beholder" class="beholder">
+    <button id="btnVisListe">Vis</button>
+    <button id="btnSkjulListe">Skjul</button>
+</div>
+</body>
+</html>
