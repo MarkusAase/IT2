@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 3</title>
+    <script>
+        window.onload = oppstart;
+
+        //Lag et 2d-array og skriv inn verdiene på de forskjellige bilene på de forskjellige plassene
+        var biler = [];
+
+        biler[0] = [
+            "Forbruk: 0.51 1/mil",
+            "Tank: 35 l",
+            "Kan kjøre " + Math.floor(35/0.51) + " mil",
+            Math.floor(3000*35*0.75/(35/0.51)) + "g CO2/mil"
+        ];
+
+        biler[1] = [
+            "Forbruk: 0.95 1/mil",
+            "Tank: 64 l",
+            "Kan kjøre " + Math.floor(64/0.95) + " mil",
+            Math.floor(3000*64*0.75/(64/0.95)) + "g CO2/mil"
+        ];
+
+        biler[2] = [
+            "Forbruk: 0.39 1/mil",
+            "Tank: 45 l",
+            "Kan kjøre " + Math.floor(45/0.39) + " mil",
+            Math.floor(3000*45*0.75/(45/0.39)) + "g CO2/mil"
+        ];
+
+        function oppstart() {
+
+            //Kjør funksjonen visInfo når knappen blir trykket på
+            document.getElementById("vis").onclick = visInfo;
+        }
+
+        function visInfo() {
+
+            //Hent ut verdien til radioknappene
+            var radioVerdi = radioForm.elements.namedItem("radKnapp").value;
+
+            //Sjekk hvilken bil som er merket av og kjør visBil funksjonen. Send med størrelsen på tanken, forburket, nummer i arrayet og bildet
+            if(radioVerdi==="fiat500"){
+                visBil(35, 0.51, 0, "0.png");
+            } else if(radioVerdi==="porsche911"){
+                visBil(64, 0.95, 1, "1.png");
+
+            } else if(radioVerdi==="toyotaPrius"){
+                visBil(45, 0.39, 2, "2.png");
+            } else {
+                document.getElementById("info").innerHTML = "Du har ikke valgt noen bil";
+            }
+        }
+
+
+
+        function visBil(tank, forbruk, nummer, bilde) {
+            //Tøm teksten
+            document.getElementById("info").innerHTML = "";
+
+            //Gå gjennom arrayet til bilen som er markert og skriv ut all informasjonen som er i det
+            for (var i = 0; i < biler[nummer].length; i++) {
+                document.getElementById("info").innerHTML += biler[nummer][i] + "<br>";
+
+            }
+
+            //Bytt ut bildet med bildet på bilen som er markert
+            document.getElementById("bilde").src = bilde;
+
+            //Kjør tegn funksjonen, send med lengden som trengs til grafikken
+            tegn(((tank/forbruk)*4));
+        }
+
+        function tegn(lengde) {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            var canvas = document.getElementById("canvas");
+
+            //Tøm tegningen
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+
+            //Lag en tegning fra helt til venstre til lengden som har blitt sendt med
+            ctx.beginPath();
+            ctx.moveTo(0,0);
+            ctx.lineTo(lengde,0);
+            ctx.lineTo(lengde, canvas.height);
+            ctx.lineTo(0, canvas.height);
+            ctx.lineTo(0,0);
+
+            //Sett farge på grafikken
+            ctx.fillStyle = "red";
+
+            ctx.fill();
+        }
+
+    </script>
+    <style>
+        img{
+            height: 10%;
+            width: 10%;
+        }
+
+
+    </style>
+</head>
+<body>
+<form name="radioForm">
+    Velg bil: <br><br><br>
+
+    <input type="radio" name="radKnapp" value="fiat500">Fiat 500 <br>
+    <input type="radio" name="radKnapp" value="porsche911">Porsche 911 <br>
+    <input type="radio" name="radKnapp" value="toyotaPrius">Toyota Prius <br>
+</form>
+
+<button type="button" id="vis">Vis info</button>
+
+
+<br><br><br>
+
+<div>
+    <p id="info"></p>
+</div>
+<br><br><br>
+
+<img src="" alt="" id="bilde"><br><br>
+<canvas id="canvas" height="10px" width="500px"></canvas>
+
+</body>
+</html>

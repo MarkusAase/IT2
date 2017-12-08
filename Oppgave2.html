@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 2</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            // Kjør beregn funksjonen når knappen blir trykket på
+            document.getElementById("skrivUt").onclick = beregn;
+        }
+
+        function beregn() {
+            //Hent ut verdiene til start og slutt og gjør dem til tall
+            var start = parseFloat(document.getElementById("start").value);
+            var slutt = parseFloat(document.getElementById("slutt").value);
+
+
+            //Prøvde å lage en loop som gikk gjennom hvert siffer i tallet og sjekket om det var lik 8, hvis det var det skriv ut, her er 8, men fikk det ikke til å fungere
+            /*for(var i = 0; i < (start*start).length; i++){
+                var sjekkAtte = (start*start).charAt(i);
+
+                if(sjekkAtte===8){
+                    document.write("Her er 8!");
+                }
+            }*/
+
+            //Kjør en for-loop med verdiene til start og slutt
+            for(start; start < slutt; start++){
+
+                //Hvis kvadratet er større enn 42, skriv ut at det er det
+                if((start*start)>42){
+                    document.write("Kvadratet av " + start + " er større enn 42 <br>");
+                }
+                //Hvis ikke, skriv ut kvadratet
+                else {
+                    document.write("Kvadratet av " + start + " er " + (start*start) + "<br>");
+                }
+
+
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+Start: <br>
+<input type="number" id="start">
+<br><br>
+Slutt: <br>
+<input type="number" id="slutt">
+<br><br>
+<button type="button" id="skrivUt">Skriv ut</button>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Markus Aase">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Oppgave 1</title>
+    <script>
+        window.onload = oppstart;
+
+        function oppstart() {
+            //Hent ut beregn knappen og kjør regnut funksjonen når den er trykket på
+            document.getElementById("beregn").onclick = regnUt;
+        }
+
+        function regnUt() {
+            //Hent ut forbruk og tank verdiene og gjør dem til tall
+            var forbruk = parseFloat(document.getElementById("forbruk").value);
+            var tank = parseFloat(document.getElementById("tank").value);
+
+            //Regn ut hva full tank er og rund det ned
+            var fullTank = Math.floor(tank/forbruk);
+
+            //Sjekk om full tank er mindre enn 50, hvis den er det send en deprimerende melding
+            if(fullTank<50){
+                document.getElementById("melding").innerHTML = "Du har allerede dårlig rekkevidde. Kanskje vurdere en elbil? Du kan kjøre " + fullTank + " mil på en full tank.";
+            }
+            //Hvis ikke, sjekk om den er høyere enn 100, hvis den er det send en gladmelding
+            else if (fullTank>100){
+                document.getElementById("melding").innerHTML = "Hurra! Du har enten diger tank eller en energieffektiv bil! Du kan kjøre " + fullTank + " mil på en full tank.";
+            }
+            //Hvis ikke, send en vanlig melding
+            else {
+                document.getElementById("melding").innerHTML = "Du kan kjøre " + fullTank + " mil på en full tank.";
+            }
+        }
+
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+Forbruk: <br>
+<input type="number" id="forbruk" min="0"><br><br>
+Tank: <br>
+<input type="number" id="tank" min="0"><br><br>
+<button type="button" id="beregn">Beregn</button>
+<br><br>
+<p id="melding"></p>
+</body>
+</html>
